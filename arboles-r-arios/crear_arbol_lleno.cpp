@@ -26,8 +26,8 @@ int main(int argc, char* argv[]){
     FILE *file = fopen("arbol", "w");
     for (int j = 0; j < numero_nodos; j++)
     {
-        int valor = 'a' + j;
-        // int valor = random_int(0, 10000);
+        // int valor = 'a' + j;
+        int valor = random_int(0, 10000);
         // cout << "en j="<< j << "valor=" << valor << endl;
         fwrite(&valor, sizeof(int), 1, file);
     }

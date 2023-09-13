@@ -41,7 +41,7 @@ void recorrido_pre_orden(int* arr, int P){
         int h = x.at(1);
         stack.pop_back();
         //  visitar(x)
-        cout << string(1, (char)valor) << endl;
+        // cout << string(1, (char)valor) << endl;
         // Consigo el indice del primer hijo
         int t = R * h + 1;
         // Visito los hijos de forma descendente
