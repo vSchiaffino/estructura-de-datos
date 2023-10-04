@@ -17,9 +17,9 @@ def ejecutar_comando(comando):
 
 def hacer_benchmark(comando_archivo, comando_memoria, nombre_archivo):
     benchmarks = []
-    NIVELES_MAXIMOS = 10
+    NIVELES_MAXIMOS = 12
     for niveles in range(NIVELES_MAXIMOS):
-        ejecutar_comando(f"./crear_arbol {niveles}")        
+        ejecutar_comando(f"./out/crear_arbol {niveles}")        
         tiempo_archivo = ejecutar_comando(comando_archivo)
         tiempo_memoria = ejecutar_comando(comando_memoria)
         benchmarks.append({
@@ -33,9 +33,9 @@ def hacer_benchmark(comando_archivo, comando_memoria, nombre_archivo):
 def hacer_benchmark_buscar():
     benchmarks = []
     for nivel in range(3, 25):
-        valor_buscado = guardar_salida_de(f"./crear_arbol_ordenado {nivel}")
-        tiempo_archivo = ejecutar_comando(f"./buscar_archivo {valor_buscado}")
-        tiempo_memoria = ejecutar_comando(f"./buscar_memoria {valor_buscado}")
+        valor_buscado = guardar_salida_de(f"./out/crear_arbol_ordenado {nivel}")
+        tiempo_archivo = ejecutar_comando(f"./out/buscar_archivo {valor_buscado}")
+        tiempo_memoria = ejecutar_comando(f"./out/buscar_memoria {valor_buscado}")
         benchmarks.append({
             "nivel": nivel,
             "memoria": tiempo_memoria,
@@ -46,8 +46,8 @@ def hacer_benchmark_buscar():
     
 
 def main():
-    hacer_benchmark("./pre_orden_archivo", "./pre_orden_memoria", "benchmark_preorden.json")
-    hacer_benchmark("./niveles_archivo", "./niveles_memoria", "benchmark_niveles.json")
+    hacer_benchmark("./out/pre_orden_archivo", "./out/pre_orden_memoria", "benchmark_preorden.json")
+    hacer_benchmark("./out/niveles_archivo", "./out/niveles_memoria", "benchmark_niveles.json")
     # hacer_benchmark_buscar()
         
 
