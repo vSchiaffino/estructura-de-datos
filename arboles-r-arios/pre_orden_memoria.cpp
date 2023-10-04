@@ -6,6 +6,7 @@
 
 #define R 3
 int P;
+int veces_leida = 0;
 
 using namespace std;
 
@@ -15,6 +16,7 @@ struct Nodo {
 };
 
 int leer_en(int *arr, int i){
+    veces_leida++;
     // cout << "i " << i << endl;
     return *(arr + i);
 }
@@ -84,6 +86,9 @@ int main(){
     int* arbol = leer_arbol(file);
     recorrido_pre_orden(arbol);
     
+    // cout << "tengo " << P << " nodos" << endl;
+    // cout << "lei " << veces_leida << " veces en memoria" << endl;
+
     free(arbol);
     return 0;
 }

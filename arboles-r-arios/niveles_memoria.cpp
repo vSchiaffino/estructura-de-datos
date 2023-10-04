@@ -6,17 +6,15 @@
 
 #define R 3
 int P;
+int veces;
 
 using namespace std;
 
-struct Nodo {
-    int valor;
-    struct Nodo* hijos[R];
-};
 
 int leer_en(int *arr, int i){
     if(i>=P)
         return -1;
+    veces++;
     return *(arr + i);
 }
 
@@ -57,7 +55,9 @@ int main(){
     int* arbol = leer_arbol(file);
 
     int niveles = calcular_niveles(arbol);
-    // cout << "niveles " << niveles << endl;
+
+    // cout << "tengo " << P << " nodos" << endl;
+    // cout << "lei " << veces << " veces" << endl;
     
     free(arbol);
     return 0;

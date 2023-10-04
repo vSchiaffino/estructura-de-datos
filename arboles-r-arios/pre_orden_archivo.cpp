@@ -5,11 +5,14 @@ using namespace std;
 
 #define R 3
 int P;
+int veces_leida = 0;
 
 int leer_en(FILE *file, int i){
     if(i >=P)
         return -1;
 
+    veces_leida++;
+    // cout << "leer " << i << endl;
     int valor;
     fseek(file, i*sizeof(int), SEEK_SET);
     fread(&valor, sizeof(int), 1, file);
@@ -61,5 +64,7 @@ int main(){
     FILE *file = fopen("arbol", "r");
     P = cantidad_nodos(file);
     recorrido_pre_orden(file);
+    // cout << "tengo " << P << " nodos" << endl;
+    // cout << "lei " << veces_leida << " veces" << endl;
     return 0;
 }
