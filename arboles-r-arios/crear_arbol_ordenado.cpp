@@ -86,11 +86,18 @@ int main(int argc, char* argv[]){
 
     // for (int j = 0; j < numero_nodos; j++)
     // {
-    //     cout << to_string(j) << ": " << to_string(arr[j]) << endl;
+        // cout << to_string(j) << ": " << to_string(arr[j]) << endl;
     // }
 
-    // FILE *file = fopen("arbol", "w");
-    // fclose(file);
+    int random_index = random_int(0, numero_nodos - 1);
+    cout << arr[random_index];
+
+    FILE *file = fopen("arbol", "w");
+    fwrite(arr, sizeof(unsigned int), numero_nodos, file);
+
+    
+
+    fclose(file);
     free(arr);
     return 0;
 }
