@@ -16,10 +16,10 @@ int nodos_totales(int i){
     (R - 1);
 }
 
-int leer_en(FILE *file, int i){
+unsigned int leer_en(FILE *file, int i){
     int valor;
     fseek(file, i*sizeof(int), SEEK_SET);
-    int bytes_read = fread(&valor, sizeof(int), 1, file);
+    int bytes_read = fread(&valor, sizeof(unsigned int), 1, file);
     if(bytes_read < 1)
         return -1;
     return valor;
@@ -31,7 +31,7 @@ int buscar_valor(FILE *file, int valor)
     int i = 0;
     while (index == -1)
     {
-        int valor_actual = leer_en(file, i);
+        unsigned int valor_actual = leer_en(file, i);
         if (valor_actual == valor)
             index = i;
         if (valor < valor_actual)
@@ -49,5 +49,5 @@ int main(int argc, char* argv[]){
 
     FILE *file = fopen("arbol", "r");
     int index = buscar_valor(file, valor_buscado);
-    cout << "index: " << index << "valor: " << leer_en(file, index) << endl;
+    // cout << "index: " << index << "valor: " << leer_en(file, index) << endl;
 }

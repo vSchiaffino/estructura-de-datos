@@ -4,101 +4,61 @@
 #include <math.h>
 #include <vector>
 #include <time.h>
+#include <random>
 
 #define R 2
+#define MAX_VAL 4294967296
+// #define MAX_VAL 1024
 
 using namespace std;
-
-bool isElementInVector(vector<unsigned int> vec, unsigned int element) {
-    for (unsigned int item : vec) {
-        if (item == element) {
-            return true;
-        }
-    }
-    return false;
-}
 
 unsigned int random_int(unsigned int a, unsigned int b) {
     return rand() % (b - a + 1) + a;
 }
 
-int nodos_totales(int i){
+int nodos_totales(int i) {
     // Usa la formula del apunte para saber los nodos totales
-    return 
-    (int)(pow((double)R,(double)(i + 1)) - 1) / 
-    (R - 1);
+    return (int)(pow((double)R, (double)(i + 1)) - 1) / (R - 1);
 }
 
-bool insertar(unsigned int *arr, unsigned int valor, int i, int p){
-    if(i >= p){
-        return false;
-    }
-
-    if(*(arr+i) == 0){
-        *(arr+i) = valor;
-        return true;
-    }
-    
-    if(*(arr+i) > valor){
-        // izq
-        int hijo_izq = i * R + 1;
-        insertar(arr, valor, hijo_izq, p);
-    }
-    else{
-        // izq
-        int hijo_der = i * R + 2;
-        insertar(arr, valor, hijo_der, p);
-    }
-}
-
-int main(int argc, char* argv[]){
+int main(int argc, char *argv[]) {
     srand(time(NULL));
-    if(argc < 2){
-        perror("no ingresaste los niveles deseados del arbol");
+    if (argc < 2) {
+        perror("No ingresaste los niveles deseados del árbol");
         return 1;
     }
-    int i = atoi(argv[1]);
-    int numero_nodos = nodos_totales(i);
+    int nivel_max = atoi(argv[1]);
+    int numero_nodos = nodos_totales(nivel_max);
 
-    unsigned int* arr = (unsigned int*)malloc(sizeof(unsigned int)*numero_nodos);
-    vector<unsigned int> lista;
+    unsigned int *arr = (unsigned int *)malloc(sizeof(unsigned int) * numero_nodos);
+    
+    (*arr) = MAX_VAL / 2;
 
-    // Llenar el arr de null
-    for (int j = 0; j < numero_nodos; j++)
+    for (int nivel = 1; nivel <= nivel_max; nivel++)
     {
-        *(arr + j) = 0;
-    }
+        int dif = MAX_VAL / (pow(R, nivel+1));
+        int nodos_nivel = pow(R, nivel);
+        bool resta = true;
+        int indice_base = 0;
+        for(int j = 0;j < nodos_nivel;j++){
+            int inicio_nivel_anterior = pow(2, nivel-1)-1;
+            int mod_inicio = j / 2;
+            int indice = pow(2, nivel) + j - 1;
+            int valor_base = arr[inicio_nivel_anterior + mod_inicio];
+            int menos = (indice % 2 == 1) ? -1 : 1;
+            int valor = valor_base + menos * dif;
 
-    for (int j = 0; j < numero_nodos; j++)
-    {
-        unsigned int valor;
-        bool resultado = false;
-        while(resultado == false){
-            valor = random_int(1, 4294967295);
-            if(isElementInVector(lista, valor)){
-                continue;
-            }
-            resultado = insertar(arr, valor, 0, numero_nodos);
+            *(arr+indice) = valor;
         }
-        lista.push_back(valor);
-        // cout << j <<" inserto " << valor << endl;
     }
 
-    // for (int j = 0; j < numero_nodos; j++)
-    // {
-        // cout << to_string(j) << ": " << to_string(arr[j]) << endl;
-    // }
+    unsigned int inicio_nivel_final = pow(2, nivel_max)-1;
 
-    int random_index = random_int(0, numero_nodos - 1);
-    cout << arr[random_index];
-
+    cout << arr[inicio_nivel_final];
     FILE *file = fopen("arbol", "w");
     fwrite(arr, sizeof(unsigned int), numero_nodos, file);
-
-    
 
     fclose(file);
     free(arr);
     return 0;
 }
-

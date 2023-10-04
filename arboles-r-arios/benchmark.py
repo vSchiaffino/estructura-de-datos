@@ -27,16 +27,13 @@ def hacer_benchmark(comando_archivo, comando_memoria, nombre_archivo):
             "memoria": tiempo_memoria,
             "archivo": tiempo_archivo
         })
-    print(benchmarks)
     with open(nombre_archivo, "w") as f:
         f.write(json.dumps(benchmarks, indent=2))
 
 def hacer_benchmark_buscar():
     benchmarks = []
-    for nivel in range(8):
-        print("creando arbol")
-        valor_buscado = int(guardar_salida_de(f"./crear_arbol_ordenado {nivel}"))
-        print("termine crear arbol")
+    for nivel in range(3, 25):
+        valor_buscado = guardar_salida_de(f"./crear_arbol_ordenado {nivel}")
         tiempo_archivo = ejecutar_comando(f"./buscar_archivo {valor_buscado}")
         tiempo_memoria = ejecutar_comando(f"./buscar_memoria {valor_buscado}")
         benchmarks.append({
@@ -44,7 +41,6 @@ def hacer_benchmark_buscar():
             "memoria": tiempo_memoria,
             "archivo": tiempo_archivo
         })
-        # print(benchmarks)
     with open("benchmark_buscar.json", "w") as f:
         f.write(json.dumps(benchmarks, indent=2))
     

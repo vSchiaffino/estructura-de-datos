@@ -16,7 +16,7 @@ int nodos_totales(int i){
     (R - 1);
 }
 
-int leer_en(int *arr, int i, int P){
+unsigned int leer_en(int *arr, int i, int P){
     if(i>=P)
         return -1;
     return *(arr + i);
@@ -41,7 +41,7 @@ int buscar_valor(int *arr, int valor, int P)
     int i = 0;
     while (index == -1)
     {
-        int valor_actual = leer_en(arr, i, P);
+        unsigned int valor_actual = leer_en(arr, i, P);
         if (valor_actual == valor)
             index = i;
         if (valor < valor_actual)
@@ -63,5 +63,5 @@ int main(int argc, char* argv[]){
     int* arr = leer_arbol(file, P);
 
     int index = buscar_valor(arr, valor_buscado, P);
-    cout << "index: " << index << " " << "valor: " << leer_en(arr, index, P) << endl;
+    // cout << "index: " << index << " " << "valor: " << leer_en(arr, index, P) << endl;
 }
