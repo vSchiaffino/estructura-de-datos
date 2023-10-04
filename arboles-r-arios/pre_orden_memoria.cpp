@@ -5,6 +5,7 @@
 #include<cmath>
 
 #define R 3
+int P;
 
 using namespace std;
 
@@ -14,6 +15,7 @@ struct Nodo {
 };
 
 int leer_en(int *arr, int i){
+    // cout << "i " << i << endl;
     return *(arr + i);
 }
 
@@ -26,7 +28,7 @@ int calcular_niveles(int n) {
 }
 
 // Usa el pseudocodigo del apunte
-void recorrido_pre_orden(int* arr, int P){
+void recorrido_pre_orden(int* arr){
     int h = 0;
     // El stack va a ser representado con una lista, usando back() y pop_back() para el pop,
     // y push_back() para el push
@@ -55,7 +57,7 @@ void recorrido_pre_orden(int* arr, int P){
     }
 }
 
-int* leer_arbol(FILE* f, int P){
+int* leer_arbol(FILE* f){
     int* arr = (int*)malloc(sizeof(int) * P);
     fseek(f, 0, SEEK_SET);
     for (int i = 0; i < P; i++)
@@ -68,14 +70,19 @@ int* leer_arbol(FILE* f, int P){
     return arr;
 }
 
+
+int cantidad_nodos(FILE* f){
+    fseek(f, 0, SEEK_END);
+    int tamanio = ftell(f);
+    return tamanio / sizeof(int);
+}
+
+
 int main(){
-    // Busco |P| lo saco viendo la cantidad de bytes y diviendolo por los bytes que ocupa un nodo (sizeof(int))
     FILE *file = fopen("arbol", "r");
-    fseek(file, 0, SEEK_END);
-    int tamaño = ftell(file);
-    int P = tamaño / sizeof(int);
-    int* arbol = leer_arbol(file, P);
-    recorrido_pre_orden(arbol, P);
+    P = cantidad_nodos(file);
+    int* arbol = leer_arbol(file);
+    recorrido_pre_orden(arbol);
     
     free(arbol);
     return 0;

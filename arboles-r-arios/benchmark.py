@@ -46,10 +46,9 @@ def hacer_benchmark_buscar():
     
 
 def main():
-    hacer_benchmark_buscar()
-    # hacer_benchmark("./pre_orden_archivo", "./pre_orden_memoria", "benchmark_preorden.json")
-    # hacer_benchmark("./niveles_archivo", "./niveles_memoria", "benchmark_niveles.json")
-    # hacer_benchmark("./buscar_archivo", "./buscar_memoria", "benchmark_buscar.json")
+    hacer_benchmark("./pre_orden_archivo", "./pre_orden_memoria", "benchmark_preorden.json")
+    hacer_benchmark("./niveles_archivo", "./niveles_memoria", "benchmark_niveles.json")
+    # hacer_benchmark_buscar()
         
 
 if(__name__ == "__main__"):

@@ -4,14 +4,18 @@
 using namespace std;
 
 #define R 3
-
+int P;
 
 int leer_en(FILE *file, int i){
+    if(i >=P)
+        return -1;
+
     int valor;
     fseek(file, i*sizeof(int), SEEK_SET);
-    int bytes_read = fread(&valor, sizeof(int), 1, file);
-    if(bytes_read < 1)
-        return -1;
+    fread(&valor, sizeof(int), 1, file);
+
+    
+    // cout << "i " << i << endl;
     return valor;
 }
 
@@ -47,8 +51,15 @@ void recorrido_pre_orden(FILE *file){
     }
 }
 
+int cantidad_nodos(FILE* f){
+    fseek(f, 0, SEEK_END);
+    int tamanio = ftell(f);
+    return tamanio / sizeof(int);
+}
+
 int main(){
     FILE *file = fopen("arbol", "r");
+    P = cantidad_nodos(file);
     recorrido_pre_orden(file);
     return 0;
 }
