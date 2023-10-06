@@ -38,6 +38,8 @@ int main(){
     FILE *file = fopen("arbol", "r");
     P = cantidad_nodos(file);
     int niveles = calcular_niveles(file);
+    cout << niveles << endl;
+
     // cout << "tengo " << P << " nodos" << endl;
     // cout << "lei " << veces << " veces" << endl;
     // cout << "Niveles " << niveles << endl;

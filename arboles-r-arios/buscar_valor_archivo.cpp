@@ -56,5 +56,5 @@ int main(int argc, char* argv[]){
     FILE *file = fopen("arbol", "r");
     P = cantidad_nodos(file);
     int index = buscar_valor(file, valor_buscado);
-    // cout << "index: " << index << "valor: " << leer_en(file, index) << endl;
+    cout << "index: " << index << " " << "valor: " << leer_en(file,index) << endl;
 }

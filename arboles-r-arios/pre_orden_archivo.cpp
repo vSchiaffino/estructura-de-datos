@@ -34,11 +34,11 @@ void recorrido_pre_orden(FILE *file){
     while(!stack.empty()){
         // x <- S
         vector<int> x = stack.back();
-        char valor = x.at(0);
+        int valor = x.at(0);
         int h = x.at(1);
         stack.pop_back();
         //  visitar(x)
-        // cout << string(1, valor) << endl;
+        cout << valor << endl;
         // Consigo el indice del primer hijo
         int t = R * h + 1;
         // Visito los hijos de forma descendente

@@ -55,7 +55,7 @@ int main(){
     int* arbol = leer_arbol(file);
 
     int niveles = calcular_niveles(arbol);
-
+    cout << niveles << endl;
     // cout << "tengo " << P << " nodos" << endl;
     // cout << "lei " << veces << " veces" << endl;
     

@@ -71,5 +71,5 @@ int main(int argc, char* argv[]){
     int* arr = leer_arbol(file);
 
     int index = buscar_valor(arr, valor_buscado);
-    // cout << "index: " << index << " " << "valor: " << leer_en(arr, index, P) << endl;
+    cout << "index: " << index << " " << "valor: " << leer_en(arr,index) << endl;
 }
