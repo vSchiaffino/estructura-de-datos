@@ -42,23 +42,23 @@ Ejemplo de ejecucion:
 Pre orden:
 
 ```
-./out/crear_arbol_lleno 3
+./out/crear_arbol 3
 ./out/pre_orden_memoria
 ```
 
 Niveles:
 
 ```
-./out/crear_arbol_lleno 3
+./out/crear_arbol 3
 ./out/niveles_archivo
 ```
 
 Busqueda:
-_Aclaracion: crear_arbol_ordenado imprime un valor sugerido a buscar (uno que este en el ultimo nivel del arbol) y ademas buscar_valor_memoria requiere el parametro de que valor queremos buscar_
+_Aclaracion: crear_arbol_ordenado imprime un valor sugerido a buscar (uno que este en el ultimo nivel del arbol) y ademas buscar_memoria y buscar_archivo requiere el parametro de que valor queremos buscar_
 
 ```
 ./out/crear_arbol_ordenado 3
-./out/buscar_valor_memoria <valor_buscado>
+./out/buscar_memoria <valor_buscado>
 ```
 
 Es importante aclarar que todos estos scripts utilizan un archivo llamado `arbol` para leer los datos a utilizar.
@@ -67,5 +67,5 @@ Nosotros generamos dos scripts adicionales para llenar un arbol y escribirlo en 
 
 La unica diferencia entre ambos es que el primero lo crea con un orden arbitrario y valores aleatorios, mientras que el segundo lo crea ordenado segun un arbol binario de busqueda.
 
-- `./out/crear_arbol_lleno <niveles_deseados>`
+- `./out/crear_arbol <niveles_deseados>`
 - `./out/crear_arbol_ordenado <niveles_deseados>`
